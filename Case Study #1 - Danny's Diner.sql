@@ -105,7 +105,25 @@ GROUP BY c.customer_id;
 
 
 
- 
+ -- Q9 
+
+WITH cte AS(
+SELECT s.customer_id, case when s.product_id = '1' then me.price * 20 else me.price * 10 end as total_points_per_dish 
+from sales s 
+join menu me 
+on s.product_id = me.product_id)
+
+SELECT customer_id, sum(total_points_per_dish) as total_points 
+from cte 
+group by customer_id
+
+
+
+-- Q10 
+
+
+
+
 
 
 
