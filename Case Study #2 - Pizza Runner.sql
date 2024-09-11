@@ -34,3 +34,32 @@ GROUP BY
     c.customer_id;
 
 
+-- Q6
+SELECT 
+    r.order_id, 
+    count(c.pizza_id) as total_pizza_count
+from 
+    runner_orders r 
+left join 
+    customer_orders c 
+on 
+    r.order_id = c.order_id
+where 
+    duration != 'null'
+group by 
+    r.order_id
+order by 
+    count(c.pizza_id) desc
+limit 1; 
+
+
+
+
+
+
+
+
+
+
+
+
