@@ -54,6 +54,47 @@ limit 1;
 
 
 
+-- Q7 
+
+
+SELECT 
+    c.customer_id,
+    COUNT(CASE WHEN (c.exclusions != '' AND c.exclusions != 'null') OR (c.extras != '' AND c.extras != 'null') 
+               THEN 1 END) AS pizzas_with_changes,
+    COUNT(CASE WHEN (c.exclusions = '' OR c.exclusions = 'null') AND (c.extras = '' OR c.extras = 'null') 
+               THEN 1 END) AS pizzas_without_changes
+FROM 
+    pizza_runner.customer_orders c
+JOIN 
+    pizza_runner.runner_orders r
+ON 
+    c.order_id = r.order_id
+WHERE 
+    r.duration != 'null'  -- Only consider delivered pizzas
+GROUP BY 
+    c.customer_id;
+
+--Q8
+
+SELECT 
+    c.customer_id,
+    COUNT(CASE WHEN (c.exclusions != '' AND c.exclusions != 'null') OR (c.extras != '' AND c.extras != 'null') 
+               THEN 1 END) AS pizzas_with_changes
+FROM 
+    pizza_runner.customer_orders c
+JOIN 
+    pizza_runner.runner_orders r
+ON 
+    c.order_id = r.order_id
+WHERE 
+    r.duration != 'null'  -- Only consider delivered pizzas
+GROUP BY 
+    c.customer_id;
+
+-- Q9 
+
+
+
 
 
 
