@@ -91,7 +91,14 @@ WHERE
 GROUP BY 
     c.customer_id;
 
--- Q9 
+
+-- Q9
+SELECT EXTRACT(HOUR FROM order_time) AS "Hour",
+       COUNT(order_id) AS "Number of pizzas ordered",
+       ROUND(100.0 * COUNT(order_id) / SUM(COUNT(order_id)) OVER(), 2) AS "Volume of pizzas ordered"
+FROM pizza_runner.customer_orders
+GROUP BY EXTRACT(HOUR FROM order_time)
+ORDER BY "Hour"; 
 
 
 
