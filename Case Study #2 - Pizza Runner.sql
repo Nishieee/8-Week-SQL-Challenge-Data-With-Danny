@@ -101,6 +101,25 @@ GROUP BY EXTRACT(HOUR FROM order_time)
 ORDER BY "Hour"; 
 
 
+--  Q10 
+
+SELECT TO_CHAR(order_time, 'Day') AS order_day, count(order_id) as count_of_orders
+FROM pizza_runner.customer_orders
+group by TO_CHAR(order_time, 'Day')
+order by TO_CHAR(order_time, 'Day')
+
+
+-- B-Q1
+SELECT  to_char(registration_date, 'week'), count(runner_id)
+from runners 
+group by to_char(registration_date, 'week')
+
+
+-- B-Q2
+
+
+
+
 
 
 
